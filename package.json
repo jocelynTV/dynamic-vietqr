@@ -1,0 +1,39 @@
+{
+  "name": "dynamic-vietqr",
+  "version": "0.0.1",
+  "description": "A class generate dynamic VietQR",
+  "main": "lib/index.js",
+  "typed": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node .",
+    "dev": "nodemon src/index.ts",
+    "prepare": "yarn build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://khoatv92/dynamic-vietqr.git"
+  },
+  "keywords": [
+    "nodejs",
+    "qrcode",
+    "vietqr",
+    "napas"
+  ],
+  "homepage": "https://khoatv92/dynamic-vietqr#README",
+  "author": "Khoa Tran <khoatv.cntt@gmail.com>",
+  "license": "MIT",
+  "files": [
+    "lib"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.5.4",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  },
+  "engines": {
+    "node": ">=20",
+    "yarn": ">=3"
+  }
+}
