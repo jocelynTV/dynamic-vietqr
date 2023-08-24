@@ -412,6 +412,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dynamic-vietqr@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "dynamic-vietqr@workspace:."
+  dependencies:
+    "@types/node": ^20.5.4
+    nodemon: ^3.0.1
+    ts-node: ^10.9.1
+    typescript: ^5.1.6
+  languageName: unknown
+  linkType: soft
+
 "eastasianwidth@npm:^0.2.0":
   version: 0.2.0
   resolution: "eastasianwidth@npm:0.2.0"
@@ -935,17 +946,6 @@ __metadata:
   checksum: aa92de608021b242401676e35cfa5aa42dd70cbdc082b916da7fb925c542173e36bce97ea3e804923fe92c0ad991434e4a38327e15a1b5b5f945d66df615ae6d
   languageName: node
   linkType: hard
-
-"napas-qr@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "napas-qr@workspace:."
-  dependencies:
-    "@types/node": ^20.5.4
-    nodemon: ^3.0.1
-    ts-node: ^10.9.1
-    typescript: ^5.1.6
-  languageName: unknown
-  linkType: soft
 
 "negotiator@npm:^0.6.3":
   version: 0.6.3

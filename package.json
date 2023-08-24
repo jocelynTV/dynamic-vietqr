@@ -1,6 +1,6 @@
 {
   "name": "dynamic-vietqr",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A class generate dynamic VietQR",
   "main": "lib/index.js",
   "typed": "lib/index.d.ts",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://khoatv92/dynamic-vietqr.git"
+    "url": "git+https://github.com/khoatv92/dynamic-vietqr.git"
   },
   "keywords": [
     "nodejs",
@@ -20,7 +20,7 @@
     "vietqr",
     "napas"
   ],
-  "homepage": "https://khoatv92/dynamic-vietqr#README",
+  "homepage": "https://github.com/khoatv92/dynamic-vietqr#README",
   "author": "Khoa Tran <khoatv.cntt@gmail.com>",
   "license": "MIT",
   "files": [
