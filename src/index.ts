@@ -29,7 +29,12 @@ export class VietQr {
    * @returns qrcode
    */
   dynamicIBFTToAccount(amount: string, message: string): string {
-    return this.qrGeneration({ amount, service: "QRIBFTTA", message });
+    return this.qrGeneration({
+      amount,
+      service: "QRIBFTTA",
+      message,
+      dynamic: true,
+    });
   }
 
   /**
@@ -39,7 +44,12 @@ export class VietQr {
    * @returns qrcode
    */
   dynamicIBFTToCard(amount: string, message: string): string {
-    return this.qrGeneration({ amount, service: "QRIBFTTC", message });
+    return this.qrGeneration({
+      amount,
+      service: "QRIBFTTC",
+      message,
+      dynamic: true,
+    });
   }
 
   /**
@@ -47,7 +57,7 @@ export class VietQr {
    * @returns qrcode
    */
   staticIBFTToAccount(): string {
-    return this.qrGeneration({ service: "QRIBFTTA" });
+    return this.qrGeneration({ service: "QRIBFTTA", dynamic: false });
   }
 
   /**
@@ -55,17 +65,19 @@ export class VietQr {
    * @returns qrcode
    */
   staticIBFTToCard(): string {
-    return this.qrGeneration({ service: "QRIBFTTC" });
+    return this.qrGeneration({ service: "QRIBFTTC", dynamic: false });
   }
 
   private qrGeneration({
     amount,
     service,
     message,
+    dynamic,
   }: {
     amount?: string;
     service: "QRPUSH" | "QRCASH" | "QRIBFTTC" | "QRIBFTTA";
     message?: string;
+    dynamic?: boolean;
   }): string {
     /**
      * Payload Format Indicator
@@ -82,7 +94,11 @@ export class VietQr {
       - 11: Static QR
       - 12: Dynamic QR
      */
-    const pointofInitiationMethod = "010212";
+    let point = "11";
+    if (dynamic) {
+      point = "12";
+    }
+    const pointofInitiationMethod = `01${this.formatString(point)}`;
 
     /**
      * Global Unique Identifier - GUID
@@ -90,13 +106,13 @@ export class VietQr {
      * @description Length: 10
      * @default A000000727
      */
-    const GUID = "0010A000000727";
+    const GUID = `00${this.formatString("A000000727")}`;
 
     /**
      * Payment network specific (Member banks, Payment Intermediaries)
      * @description ID: 01
      */
-    const bnbIdCode = `0006${this.bnbId}`;
+    const bnbIdCode = `00${this.formatString(this.bnbId)}`;
     const account = `01${this.formatString(this.accountOrCardNumber)}`;
     const paymentNetworkSpecific = `01${this.formatString(
       bnbIdCode + account
@@ -127,7 +143,7 @@ export class VietQr {
      * @description Length: 03
      * @default 704
      */
-    const transactionCurrency = `5303704`;
+    const transactionCurrency = `53${this.formatString("704")}`;
 
     /**
      * Transaction Amount
@@ -145,13 +161,13 @@ export class VietQr {
      * @description Length: 02
      * @default VN
      */
-    const countryCode = "5802VN";
+    const countryCode = `58${this.formatString("VN")}`;
 
     let additional = "";
 
     if (message) {
       if (message.length > 25) {
-        throw Error("Message max 25 char");
+        throw Error("Message max 25 characters");
       }
       /**
        * Purpose of Transaction
@@ -174,7 +190,6 @@ export class VietQr {
      * @description ID: 63
      * @description Length: 04
      */
-    // 6304 sum
 
     const CRC = `6304`;
 
@@ -188,7 +203,12 @@ export class VietQr {
       additional +
       CRC;
 
-    return `${value}${this.crc16(value).toString(16).toLocaleUpperCase()}`;
+    const crc = this.crc16(value).toString(16).toLocaleUpperCase();
+    if (crc.length !== 4) {
+      throw Error("CRC is not equal 4");
+    }
+
+    return `${value}${crc}`;
   }
 
   private crc16(str: string) {
