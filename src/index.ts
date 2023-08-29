@@ -166,8 +166,11 @@ export class VietQr {
     let additional = "";
 
     if (message) {
-      if (message.length > 25) {
-        throw Error("Message max 25 characters");
+      const regex = /^[a-zA-Z0-9 ]{1,25}$/;
+      if (!regex.test(message)) {
+        throw Error(
+          "Message max 25 characters or only letters and numbers and space."
+        );
       }
       /**
        * Purpose of Transaction
