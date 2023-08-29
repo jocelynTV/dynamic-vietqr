@@ -359,6 +359,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"crc@npm:^4.3.2":
+  version: 4.3.2
+  resolution: "crc@npm:4.3.2"
+  peerDependencies:
+    buffer: ">=6.0.3"
+  peerDependenciesMeta:
+    buffer:
+      optional: true
+  checksum: 8231cc25331727083ffd22da3575110fc49b4dc8725de973bd43261d4426aba134ed3a75cc247f7c5e97a6e171f87dffc3325b82890e86d032de2e6bcef09c32
+  languageName: node
+  linkType: hard
+
 "create-require@npm:^1.1.0":
   version: 1.1.1
   resolution: "create-require@npm:1.1.1"
@@ -417,6 +429,7 @@ __metadata:
   resolution: "dynamic-vietqr@workspace:."
   dependencies:
     "@types/node": ^20.5.4
+    crc: ^4.3.2
     nodemon: ^3.0.1
     ts-node: ^10.9.1
     typescript: ^5.1.6
