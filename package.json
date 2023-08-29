@@ -1,6 +1,6 @@
 {
   "name": "dynamic-vietqr",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A class generate dynamic VietQR",
   "main": "lib/index.js",
   "typed": "lib/index.d.ts",
